@@ -1,9 +1,4 @@
-
-spring:
-  application:
-    name: Config-dev
-
-
+# Common configuration applied to all microservices
 eureka:
   client:
     register-with-eureka: true
@@ -12,3 +7,27 @@ eureka:
       defaultZone: http://localhost:8761/eureka
   instance:
     prefer-ip-address: true
+
+# Common Okta configuration
+okta:
+  oauth2:
+    issuer: https://trial-5890863.okta.com/oauth2/default
+    audience: api://default
+
+# Common OAuth2 Resource Server config
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: https://trial-5890863.okta.com/oauth2/default
+
+# Common Management/Actuator config
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: always
